@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Unvirsity_System.Models.Professor>
+
+@{
+    ViewBag.Title = "prof";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 h2 style="color:black;font-size:30px;font-weight:bold;text-align:center;font-family:Britannic;">Professors</h2>
+
+
+<table class="table tab-content tab-pane table-active table-bordered table-hover table-light ">
+    <tr style="color:black;background-color:#0275d8;text-align:center">
+
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Signtific_Digree)
+        </th>
+        <th> </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="color:black">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Signtific_Digree)
+            </td>
+            <td>
+                @*  <button class="btn btn-danger">@Html.ActionLink("Details", "Details", "professor", new { id = item.ID }, new { style = "color:black" }) </button>*@
+                <button onclick="goback()" class="btn btn-danger">back </button>
+            </td>
+        </tr>
+    }
+
+</table>
+<script>
+    function goback() {
+        window.history.back();
+    }
+</script>

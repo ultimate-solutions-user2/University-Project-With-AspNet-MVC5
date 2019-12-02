@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Unvirsity_System.Models.Course>
+
+@{
+    ViewBag.Title = "courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:black;font-size:30px;font-weight:bold;text-align:center;font-family:Britannic;">courses</h2>
+
+<table class="table tab-content tab-pane table-active table-bordered table-hover table-light ">
+    <tr style="color:black;background-color:#0275d8;text-align:center">
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Max_Digree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Min_Digree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NO_OF_Hours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Is_Elective)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="color:black">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Max_Digree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Min_Digree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NO_OF_Hours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Is_Elective)
+            </td>
+            <td>
+
+                <button class="btn btn-danger"  style="background-color:#134787"> @Html.ActionLink("Professors", "prof", "Professors", new { id = item.ID },null)</button>
+                <button onclick="back()" class="btn btn-danger"  style="background-color:#134787">
+                    back
+                </button>
+
+
+            </td>
+        </tr>
+
+
+    }
+
+</table>
+<script>
+    function back() {
+        window.history.back();
+    }
+</script>

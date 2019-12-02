@@ -1,0 +1,56 @@
+﻿@model Unvirsity_System.Models.Faculty
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*<h2>Details</h2>*@
+@*<div>
+    <h4>Faculty</h4>
+    <hr />*@
+
+<div class="row">
+    <div class="col-lg-6" style="float:left">
+        <div style="height:100%;width:100%;border-radius:20px;border:1px solid white;">
+            @*  <img src="@Model.Image" style="height:400px; width:100%; border-radius:20px" />*@
+            @if (@Model.Image != null)
+            {
+                string imageBase64 = Convert.ToBase64String(@Model.Image);
+                string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                <img src="@imageSrc" alt="unversity img" class="product-img" style="height:400px; width:100%;border-radius:20px" />
+            }
+        </div>
+    </div>
+    <div class="col-lg-6" style="float:left">
+        <br /><br />
+        @*@Html.LabelFor(s => s.Branch.Name)*@
+        <span style="font-weight:bold;">@Html.Label("UniversityName") </span> |@Html.DisplayFor(model => model.Branch.University.Name)
+        <br />
+        <span style="font-weight:bold;">@Html.Label("BranchName") </span> |@Html.DisplayFor(model => model.Branch.Name)
+
+        @*<span style="font-weight:bold;"> @Html.DisplayNameFor(model => model.Branch.Name)</span> |@Html.DisplayFor(model => model.Branch.Name)*@
+        <br />
+        <span style="font-weight:bold;">@Html.Label("FacultyName") </span> | @Html.DisplayFor(model => model.Name)
+        <br />
+        <span style="font-weight:bold;">@Html.DisplayNameFor(model => model.Telephon)</span> | @Html.DisplayFor(model => model.Telephon)
+        <br />
+        <span style="font-weight:bold;">@Html.DisplayNameFor(model => model.Min_Digree)</span> | @Html.DisplayFor(model => model.Min_Digree)
+        <br />
+        <span style="font-weight:bold;">@Html.Label("Cost Per Year")</span> | @Html.DisplayFor(model => model.Costs)
+        <br />
+        <span style="font-weight:bold;">@Html.DisplayNameFor(model => model.Faculty_Detailes)</span> | @Html.DisplayFor(model => model.Faculty_Detailes)
+        <br /><br />
+        <span style="font-weight:bold;">@Html.DisplayNameFor(model => model.Required_Document)</span> | @Html.DisplayFor(model => model.Required_Document)
+        <br />
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |*@
+        @Html.ActionLink("Back", "Index", "Faculty", new { option = Model.branch_ID }, null)
+        |
+        @Html.ActionLink("view Department", "department", "Faculty", new { id = Model.ID }, null)
+        |
+        @Html.ActionLink("Apply", "Create", "Submit_Student", new { id = Model.ID }, null)
+
+    </div>
+</div>

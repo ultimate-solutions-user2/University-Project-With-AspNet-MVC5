@@ -1,0 +1,71 @@
+﻿@using Unvirsity_System.Models
+@model List<Faculty>
+@{
+    ViewBag.Title = "ShowAllFaculty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/styleu.css" rel="stylesheet" />
+@using (Html.BeginForm("ShowAllFaculty", "Faculty", FormMethod.Get))
+{
+    //the following are search options
+    <br />
+    <b style="color:black;margin:20px;"> Search Option: </b>
+    @Html.CheckBox("optionFac", "Faculty") <span style="color:black;margin-top:20px;font-weight:bold;">Faculty</span>
+    @Html.TextBox("search")
+    <br />
+   
+    <div style="margin-left:144px;">
+        @Html.CheckBox("optionCost", "Cost") <span style="color:black;margin-top:20px;font-weight:bold;">Cost </span> &nbsp; &nbsp; 
+        @*<input type="number" name="costsearch" min="0" value="0" />*@
+        @*@Html.TextBox("costsearch", new { style = "Color:red", @class = "form-control" })*@
+          @Html.TextBox("costsearch")
+        <input type="submit" name="submit" value="Search" class="btn btn-primary" />
+    </div>
+}
+
+@if (Model.Count() == 0)
+{
+    <h1>Records not found</h1>
+}
+else
+{
+    <div class="container page-wrapper">
+        <div class="page-inner">
+            <div class="row">
+
+                @foreach (var item in Model)
+                {
+                <div class="box-wrapper" style="float:left">
+                    @if (item.Image != null)
+                    {
+                        string imageBase64 = Convert.ToBase64String(item.Image);
+                        string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                        <img src="@imageSrc" alt="unversity img" class="product-img" width="100" height="200" />
+                    }
+                    @*<img src="@item.Image" alt="Faculty img" class="product-img" width="100" height="200">*@
+                    <div class="box-info">
+                        <h1 class="main-title">@item.Name</h1>
+                        @*<h2 class="sub-title">@item.Name</h2>*@
+                        <h3 class="sub-title">tel:@item.Telephon </h3>
+                        <div>
+                            <a href="\Faculty\details\@item.ID" class="btn btn-primary">view details</a>
+                            @*<button class="btn btn-primary">view faculty</button>*@
+                        </div>
+                    </div>
+
+                    <div class="right-column">
+
+                        <span class="price">@item.Costs$</span>
+                    </div>
+
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+}
+
+

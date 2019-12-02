@@ -1,0 +1,42 @@
+﻿@model Unvirsity_System.Models.Professor
+
+@{
+    ViewBag.Title = "professor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:black;font-size:30px;font-weight:bold;text-align:center;font-family:Britannic;">professor</h2>
+
+
+<table class="table">
+    <tr style="color:black;background-color:#0275d8;text-align:center">
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Signtific_Digree)
+        </th>
+        <th></th>
+    </tr>
+
+    <tr style="color:black">
+        <td>
+            @Html.DisplayFor(modelItem => Model.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Signtific_Digree)
+        </td>
+        <td>
+            @* @Html.ActionLink("Details", "Details", new { id = Model.ID }) |*@
+            @Html.ActionLink("professor", "prof", "professor", new { id = Model.ID }, null)
+            <button onclick="goback()" class="btn btn-danger">back </button>
+        </td>
+    </tr>
+    }
+
+</table>
+<script>
+    function goback() {
+        window.history.back();
+    }
+</script>
